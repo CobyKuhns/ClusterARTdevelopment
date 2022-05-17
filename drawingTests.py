@@ -39,6 +39,7 @@ def drawingUpdates():
             print(dataList)
             canvas.create_line((dataList[0],dataList[1],dataList[2],dataList[3]), fill = 'blue', width= 2)
             dataList = []
+        time.sleep(.01)
 
 def sendUpdates():
     while True:
