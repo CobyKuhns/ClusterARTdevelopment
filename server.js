@@ -10,9 +10,7 @@ var canvasState;
 
 console.log("My socket server is running");
 
-var socket = require('socket.io');
-
-var io = socket(server);
+const io = require('socket.io')(server, {cors: {origin: "*"}});
 
 io.sockets.on('connection', newConnection);
 
