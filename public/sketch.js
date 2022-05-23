@@ -1,10 +1,6 @@
 var socket;
 let cnv;
 
-var timerID = setInterval(function() {
-    let canvasState = cnv.elt.toDataURL();
-	socket.emit('update', canvasState);
-}, 10 * 1000);
 
 var penColor = {
 	r: 255,
@@ -21,6 +17,11 @@ function setup() {
 	socket.on('mouse', newDrawing);
 	socket.on('color')
 }
+
+var timerID = setInterval(function() {
+    let canvasState = cnv.elt.toDataURL();
+	socket.emit('update', canvasState);
+}, 10 * 1000);
 
 function loadCanvas(data) {
 	if(data !== "null") {
