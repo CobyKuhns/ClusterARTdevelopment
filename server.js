@@ -10,7 +10,7 @@ var canvasState;
 
 console.log("My socket server is running");
 
-var socket = require('socket.io')
+var socket = require('socket.io');
 
 var io = socket(server);
 
