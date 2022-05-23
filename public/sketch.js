@@ -1,18 +1,33 @@
 var socket;
+let cnv;
+
+var timerID = setInterval(function() {
+    let canvasState = cnv.elt.toDataURL();
+	socket.emit('update', canvasState);
+}, 10 * 1000);
+
 var penColor = {
 	r: 255,
 	g: 255,
 	b: 255,
 }
+
 function setup() {
-	createCanvas(800, 800);
+	cnv = createCanvas(800, 800);
 	background(0);
 	
 	socket = io.connect("http://52.52.137.68:3000");
+	socket.on("update", loadCanvas);
 	socket.on('mouse', newDrawing);
 	socket.on('color')
 }
 
+function loadCanvas(data) {
+	if(data !== "null") {
+		img = loadImage(data);
+		image(img, 0, 0, width, height);
+	}
+}
 function newDrawing(data) {
 	console.log(data);
 	noStroke();
