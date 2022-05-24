@@ -17,7 +17,7 @@ const element = document.getElementById('clear');
 
 if(element){
 	element.addEventListener("click", () => {
-		socket.emit('clear', 'clear!');
+		socket.emit('clear', 1);
 		console.log("Sent clear message!");
 	});
 }
@@ -39,7 +39,7 @@ var timerID = setInterval(function() {
 }, 3 * 1000);
 
 var timerID2 = setInterval(function() {
-    socket.emit('clear', "clear?")
+    socket.emit('clear', 0)
 }, 3 * 1000);
 
 function loadCanvas(data) {

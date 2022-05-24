@@ -47,13 +47,13 @@ function newConnection(socket) {
 		socket.broadcast.emit('mouse', data);
 	}
 	function clearCanvas(data) {
-		if(data == "clear!"){
+		if(data) {
 			clear = 1;
 		}
-		if(clear !== 1){
+		if(clear !== 1) {
 			socket.emit('clear', clear);
 		}
-		else{
+		else {
 			io.emit('clear', clear);
 		}
 		clear = 0;
