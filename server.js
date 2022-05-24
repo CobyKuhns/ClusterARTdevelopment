@@ -1,5 +1,6 @@
 //express makes setting up your web server faster!
 var express = require('express');
+const { rawListeners } = require('process');
 
 var app = express();
 //This part links the public folder to the server, so ideally index.html will get pulled when someone connects
@@ -17,17 +18,19 @@ io.sockets.on('connection', newConnection);
 const readline = require('readline').createInterface({
 	input: process.stdin,
 	output: process.stdout,
+	prompt: "SERVER"
   });
 
-function clearCanvas() {
-	readline.question(`SERVER:`, name => {
-		if(name == "clear") {
-			clear = 1;
-		}
-	  });
-	clearCanvas();
-}
-clearCanvas();
+readline.prompt();
+
+readline.on('line', (line) => {
+	if(line == "clear") {
+		clear = 1;
+	}
+	readline.prompt();
+}).on('close', () => {
+	process.exit(0);
+})
 
 function newConnection(socket) {
 	if(typeof canvasState !== 'undefined') {
