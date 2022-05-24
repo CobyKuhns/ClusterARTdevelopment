@@ -3,7 +3,8 @@ let cnv;
 var img;
 var hasBg;
 hasBg = 0;
-
+var needsCleared;
+needsCleared = 0;
 
 var penColor = {
 	r: 255,
@@ -76,7 +77,7 @@ function touchMoved() {
 
 function clearCanvas() {
 	console.log("Clearing canvas...")
-	clear();
+	needsCleared = 1;
 }
 
 function draw() {
@@ -86,5 +87,9 @@ function draw() {
 		console.log("Attempting to update background...");
 		background(img);
 		hasBg = hasBg + 1;
+	}
+	if(needsCleared) {
+		clear();
+		needsCleared = 0;
 	}
 }
