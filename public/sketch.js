@@ -25,7 +25,7 @@ var timerID = setInterval(function() {
 
 function loadCanvas(data) {
 	if(data !== "null") {
-		img = loadImage('data:image/png;base64,' + data)
+		img = loadImage(data.data)
 		image(img, 0, 0);
 	}
 }
