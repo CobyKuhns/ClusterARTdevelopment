@@ -16,13 +16,13 @@ function setup() {
 	
 	socket = io.connect("http://52.52.137.68:3000");
 	socket.on('mouse', newDrawing);
-	socket.on('color')
+	socket.on('color');
 }
 
 var timerID = setInterval(function() {
     let canvasState = cnv.elt.toDataURL();
 	socket.emit('update', canvasState);
-	console.log(typeof canvasState)
+	console.log(typeof canvasState);
 }, 10 * 1000);
 
 function loadCanvas(data) {
@@ -39,7 +39,7 @@ function newDrawing(data) {
 }
 
 function mouseDragged() {
-	console.log(mouseX + ',' + mouseY)
+	console.log(mouseX + ',' + mouseY);
 	var data = {
 		x: mouseX,
 		y: mouseY
@@ -51,7 +51,7 @@ function mouseDragged() {
 }
 
 function mouseClicked() {
-	console.log(mouseX + ',' + mouseY)
+	console.log(mouseX + ',' + mouseY);
 	var data = {
 		x: mouseX,
 		y: mouseY
@@ -75,11 +75,10 @@ function touchMoved() {
 }
 function draw() {
 	socket.on("update", loadCanvas);
-	if(typeof img !== "undefined" && hasBg == 0) {
-		console.log("Attempting to update background...")
-		console.log(img)
+	if(typeof img !== "undefined" && hasBg <= 10) {
+		console.log("Attempting to update background...");
 		background(img);
-		hasBg = 1;
+		hasBg = hasBg + 1;
 	}
 	
 }
