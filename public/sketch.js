@@ -12,7 +12,7 @@ var penColor = {
 	g: 255,
 	b: 255,
 }
-const element = document.getElementById('clear')
+const element = document.getElementById('clear');
 
 element.addEventListener("click", () => {
 	socket.emit('clear', 'clear!')
