@@ -28,7 +28,7 @@ function loadCanvas(data) {
 	if(data !== "null") {
 		img = loadImage(data);
 		console.log(typeof data);
-		image(img, 0, 0);
+		image(img, 0, 0, 800, 800);
 	}
 }
 function newDrawing(data) {
