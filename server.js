@@ -6,14 +6,26 @@ var app = express();
 app.use(express.static('public'));
 var server = app.listen(3000);
 var canvasState;
-
+var clear;
+clear = 0;
 
 console.log("My socket server is running");
 
 const io = require('socket.io')(server, {cors: {origin: "*"}});
 
 io.sockets.on('connection', newConnection);
+const readline = require('readline').createInterface({
+	input: process.stdin,
+	output: process.stdout,
+  });
 
+readline.question(`SERVER:`, name => {
+	if(name == "clear") {
+		clear = 1;
+	}
+	readline.close();
+  });
+  
 function newConnection(socket) {
 	if(typeof canvasState !== 'undefined') {
 		socket.emit('update', canvasState);
