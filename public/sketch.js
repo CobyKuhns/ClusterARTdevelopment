@@ -28,6 +28,10 @@ var timerID = setInterval(function() {
 	console.log(typeof canvasState);
 }, 3 * 1000);
 
+var timerID2 = setInterval(function() {
+    socket.emit('clear', "clear?")
+}, 10 * 1000);
+
 function loadCanvas(data) {
 	if(data !== "null") {
 		img = loadImage(data);
@@ -77,9 +81,8 @@ function touchMoved() {
 	ellipse(mouseX, mouseY, 10, 10);
 }
 
-function clearCanvas() {
-	console.log("Clearing canvas...")
-	needsCleared = 1;
+function clearCanvas(data) {
+	needsCleared = data;
 }
 
 function draw() {

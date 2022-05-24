@@ -40,15 +40,15 @@ function newConnection(socket) {
 	else {
 		socket.emit('update', "null");
 	}
-	if(clear) {
-		console.log("Sending clear signal");
-		socket.emit('clear', 'clear');
-		clear = 0;
-	}
+	socket.on('clear', clearCanvas);
 	socket.on('mouse', mouseMsg);
 	socket.on('update', saveCanvas);
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
+	}
+	function clearCanvas() {
+		console.log(clear);
+		socket.emit('clear', clear);
 	}
 	function saveCanvas(data) {
 		canvasState = data;
