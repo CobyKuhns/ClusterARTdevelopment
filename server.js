@@ -29,8 +29,6 @@ readline.on('line', (line) => {
 		clear = 1;
 	}
 	readline.prompt();
-}).on('close', () => {
-	process.exit(0);
 })
 
 function newConnection(socket) {
