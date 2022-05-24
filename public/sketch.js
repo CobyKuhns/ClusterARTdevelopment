@@ -93,6 +93,7 @@ function draw() {
 	}
 	if(needsCleared) {
 		background(0);
+		alert("Server has cleared the Canvas!");
 		needsCleared = 0;
 	}
 }
