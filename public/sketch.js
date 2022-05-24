@@ -25,12 +25,11 @@ function setup() {
 var timerID = setInterval(function() {
     let canvasState = cnv.elt.toDataURL();
 	socket.emit('update', canvasState);
-	console.log(typeof canvasState);
 }, 3 * 1000);
 
 var timerID2 = setInterval(function() {
     socket.emit('clear', "clear?")
-}, 10 * 1000);
+}, 3 * 1000);
 
 function loadCanvas(data) {
 	if(data !== "null") {
