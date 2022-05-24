@@ -13,14 +13,10 @@ var penColor = {
 	b: 255,
 }
 
-const element = document.getElementById('clear');
 
-if(element){
-	element.addEventListener("click", () => {
-		socket.emit('clear', 1);
-		console.log("Sent clear message!");
-	});
-}
+
+	
+
 
 
 function setup() {
@@ -31,6 +27,11 @@ function setup() {
 	socket.on('mouse', newDrawing);
 	socket.on("update", loadCanvas);
 	socket.on('clear', clearCanvas);
+	const element = document.getElementById('clear');
+	element.addEventListener("click", () => {
+		socket.emit('clear', 1);
+		console.log("Sent clear message!");
+	});
 }
 
 var timerID = setInterval(function() {
