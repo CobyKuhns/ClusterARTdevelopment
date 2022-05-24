@@ -1,6 +1,6 @@
 var socket;
 let cnv;
-
+var img;
 
 var penColor = {
 	r: 255,
@@ -13,7 +13,6 @@ function setup() {
 	background(0);
 	
 	socket = io.connect("http://52.52.137.68:3000");
-	socket.on("update", loadCanvas);
 	socket.on('mouse', newDrawing);
 	socket.on('color')
 }
@@ -73,5 +72,6 @@ function touchMoved() {
 	ellipse(mouseX, mouseY, 10, 10);
 }
 function draw() {
+	socket.on("update", loadCanvas);
 	image(img, 0, 0, img.width, img.height);
 }
