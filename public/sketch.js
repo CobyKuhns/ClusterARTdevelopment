@@ -58,7 +58,7 @@ function mouseDragged() {
 	}
 	socket.emit('mouse', data);
 	noStroke();
-	fill(255);
+	fill(data.red, data.green, data.blue);
 	ellipse(mouseX, mouseY, 10, 10);
 }
 
@@ -75,7 +75,7 @@ function mouseClicked() {
 	}
 	socket.emit('mouse', data);
 	noStroke();
-	fill(255);
+	fill(data.red, data.green, data.blue);
 	ellipse(mouseX, mouseY, 10, 10);
 }
 
