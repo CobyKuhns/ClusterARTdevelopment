@@ -20,13 +20,13 @@ function setup() {
 
 var timerID = setInterval(function() {
     let canvasState = cnv.elt.toDataURL();
-	console.log(canvasState);
 	socket.emit('update', canvasState);
 }, 10 * 1000);
 
 function loadCanvas(data) {
 	if(data !== "null") {
 		img = loadImage(data);
+		console.log(data)
 		image(img, 0, 0, width, height);
 	}
 }

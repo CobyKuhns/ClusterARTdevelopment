@@ -27,7 +27,6 @@ function newConnection(socket) {
 		socket.broadcast.emit('mouse', data);
 	}
 	function saveCanvas(data) {
-		console.log(data);
 		canvasState = data;
 	}
 }
