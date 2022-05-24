@@ -83,11 +83,14 @@ function touchMoved() {
 	console.log(mouseX, mouseY)
 	var data = {
 		x: mouseX,
-		y: mouseY
+		y: mouseY,
+		red: parseInt(htmlColor[1]+htmlColor[2],16),
+		green: parseInt(htmlColor[3]+htmlColor[4],16),
+		blue: parseInt(htmlColor[5]+htmlColor[6],16),
 	}
 	socket.emit('mouse', data);
 	noStroke();
-	fill(255);
+	fill(data.red, data.green, data.blue);
 	ellipse(mouseX, mouseY, 10, 10);
 }
 
