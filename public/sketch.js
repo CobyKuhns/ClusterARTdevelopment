@@ -1,6 +1,8 @@
 var socket;
 let cnv;
 var img;
+var hasBg;
+hasBg = False;
 
 var penColor = {
 	r: 255,
@@ -73,8 +75,9 @@ function touchMoved() {
 }
 function draw() {
 	socket.on("update", loadCanvas);
-	if(typeof img !== "undefined") {
-		background(img,);
+	if(typeof img !== "undefined" && hasBg == False) {
+		background(img);
+		hasBg = True;
 	}
 	
 }
