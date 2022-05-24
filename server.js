@@ -19,12 +19,14 @@ const readline = require('readline').createInterface({
 	output: process.stdout,
   });
 
+while(1) {
+	readline.question(`SERVER:`, name => {
+		if(name == "clear") {
+			clear = 1;
+		}
+	  });
+}
 
-readline.question(`SERVER:`, name => {
-	if(name == "clear") {
-		clear = 1;
-	}
-  });
 
 function newConnection(socket) {
 	if(typeof canvasState !== 'undefined') {
@@ -32,6 +34,10 @@ function newConnection(socket) {
 	}
 	else {
 		socket.emit('update', "null");
+	}
+	if(clear) {
+		socket.emit('clear', 'clear');
+		clear = 0;
 	}
 	socket.on('mouse', mouseMsg);
 	socket.on('update', saveCanvas);

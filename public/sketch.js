@@ -3,6 +3,8 @@ let cnv;
 var img;
 var hasBg;
 hasBg = 0;
+var clear;
+clear = 0;
 
 var penColor = {
 	r: 255,
@@ -16,14 +18,14 @@ function setup() {
 	
 	socket = io.connect("http://52.52.137.68:3000");
 	socket.on('mouse', newDrawing);
-	socket.on('color');
+	socket.on('clear', clearCanvas);
 }
 
 var timerID = setInterval(function() {
     let canvasState = cnv.elt.toDataURL();
 	socket.emit('update', canvasState);
 	console.log(typeof canvasState);
-}, 10 * 1000);
+}, 3 * 1000);
 
 function loadCanvas(data) {
 	if(data !== "null") {
@@ -73,6 +75,11 @@ function touchMoved() {
 	fill(255);
 	ellipse(mouseX, mouseY, 10, 10);
 }
+
+function clearCanvas() {
+	clear = 1;
+}
+
 function draw() {
 	socket.on("update", loadCanvas);
 	if(typeof img !== "undefined" && hasBg <= 10) {
@@ -80,5 +87,7 @@ function draw() {
 		background(img);
 		hasBg = hasBg + 1;
 	}
-	
+	if(clear) {
+		background(0);
+	}	
 }
