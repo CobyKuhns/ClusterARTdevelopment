@@ -76,6 +76,7 @@ function touchMoved() {
 function draw() {
 	socket.on("update", loadCanvas);
 	if(typeof img !== "undefined" && hasBg == 0) {
+		console.log("Attempting to update background...")
 		background(img);
 		hasBg = 1;
 	}
