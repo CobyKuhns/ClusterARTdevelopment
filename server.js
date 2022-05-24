@@ -19,13 +19,13 @@ const readline = require('readline').createInterface({
 	output: process.stdout,
   });
 
+
 readline.question(`SERVER:`, name => {
 	if(name == "clear") {
 		clear = 1;
 	}
-	readline.close();
   });
-  
+
 function newConnection(socket) {
 	if(typeof canvasState !== 'undefined') {
 		socket.emit('update', canvasState);
