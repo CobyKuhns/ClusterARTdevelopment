@@ -25,6 +25,7 @@ readline.prompt();
 
 readline.on('line', (line) => {
 	if(line == "clear") {
+		console.log("Clearing canvas's")
 		clear = 1;
 	}
 	readline.prompt();
