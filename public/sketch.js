@@ -6,8 +6,7 @@ hasBg = 0;
 var needsCleared;
 needsCleared = 0;
 
-var htmlColor = document.getElementById('colorpicker').value;
-console.log(htmlColor);
+var htmlColor;
 var penColor = {
 	r: 255,
 	g: 255,
@@ -47,6 +46,8 @@ function newDrawing(data) {
 }
 
 function mouseDragged() {
+	htmlColor = document.getElementById('colorpicker').value;
+	console.log(htmlColor);
 	console.log(mouseX + ',' + mouseY);
 	var data = {
 		x: mouseX,
@@ -59,10 +60,13 @@ function mouseDragged() {
 }
 
 function mouseClicked() {
+	htmlColor = document.getElementById('colorpicker').value;
+	console.log(htmlColor);
 	console.log(mouseX + ',' + mouseY);
 	var data = {
 		x: mouseX,
-		y: mouseY
+		y: mouseY,
+		color: htmlColor
 	}
 	socket.emit('mouse', data);
 	noStroke();
