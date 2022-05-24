@@ -14,6 +14,7 @@ var penColor = {
 }
 
 const element = document.getElementById('clear');
+
 if(element){
 	element.addEventListener("click", () => {
 		socket.emit('clear', 'clear!');
