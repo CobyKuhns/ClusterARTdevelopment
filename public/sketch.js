@@ -3,8 +3,7 @@ let cnv;
 var img;
 var hasBg;
 hasBg = 0;
-var clear;
-clear = 0;
+
 
 var penColor = {
 	r: 255,
