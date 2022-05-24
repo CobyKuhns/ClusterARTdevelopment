@@ -80,6 +80,8 @@ function mouseClicked() {
 }
 
 function touchMoved() {
+	htmlColor = document.getElementById('colorpicker').value;
+	console.log(htmlColor);
 	console.log(mouseX, mouseY)
 	var data = {
 		x: mouseX,
