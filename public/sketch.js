@@ -41,7 +41,7 @@ function loadCanvas(data) {
 function newDrawing(data) {
 	console.log(data);
 	noStroke();
-	fill(255);
+	fill(data.red, data.green, data.blue);
 	ellipse(data.x, data.y, 10, 10);
 }
 
@@ -51,7 +51,10 @@ function mouseDragged() {
 	console.log(mouseX + ',' + mouseY);
 	var data = {
 		x: mouseX,
-		y: mouseY
+		y: mouseY,
+		red: parseInt(htmlColor[1]+htmlColor[2],16),
+		green: parseInt(htmlColor[3]+htmlColor[4],16),
+		blue: parseInt(htmlColor[5]+htmlColor[6],16),
 	}
 	socket.emit('mouse', data);
 	noStroke();
@@ -66,7 +69,9 @@ function mouseClicked() {
 	var data = {
 		x: mouseX,
 		y: mouseY,
-		color: htmlColor
+		red: parseInt(htmlColor[1]+htmlColor[2],16),
+		green: parseInt(htmlColor[3]+htmlColor[4],16),
+		blue: parseInt(htmlColor[5]+htmlColor[6],16),
 	}
 	socket.emit('mouse', data);
 	noStroke();
