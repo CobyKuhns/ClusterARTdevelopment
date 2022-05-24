@@ -73,5 +73,8 @@ function touchMoved() {
 }
 function draw() {
 	socket.on("update", loadCanvas);
-	image(img, 0, 0, img.width, img.height);
+	if(typeof img !== "undefined") {
+		image(img, 0, 0, img.width, img.height);
+	}
+	
 }
