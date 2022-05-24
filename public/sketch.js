@@ -89,5 +89,6 @@ function draw() {
 	}
 	if(clear) {
 		background(0);
+		clear = 0;
 	}	
 }
