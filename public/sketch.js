@@ -77,7 +77,7 @@ function touchMoved() {
 }
 
 function clearCanvas() {
-	clear = 1;
+	clear();
 }
 
 function draw() {
@@ -87,8 +87,4 @@ function draw() {
 		background(img);
 		hasBg = hasBg + 1;
 	}
-	if(clear) {
-		background(0);
-		clear = 0;
-	}	
 }
