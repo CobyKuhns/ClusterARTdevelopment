@@ -6,6 +6,8 @@ hasBg = 0;
 var needsCleared;
 needsCleared = 0;
 
+var htmlColor = document.getElementById('colorpicker').value;
+console.log(htmlColor);
 var penColor = {
 	r: 255,
 	g: 255,
