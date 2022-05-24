@@ -12,12 +12,15 @@ var penColor = {
 	g: 255,
 	b: 255,
 }
-const element = document.getElementById('clear');
 
-element.addEventListener("click", () => {
-	socket.emit('clear', 'clear!');
-	console.log("Sent clear message!");
-});
+const element = document.getElementById('clear');
+if(element){
+	element.addEventListener("click", () => {
+		socket.emit('clear', 'clear!');
+		console.log("Sent clear message!");
+	});
+}
+
 
 function setup() {
 	cnv = createCanvas(800, 800);
