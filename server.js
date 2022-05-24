@@ -46,8 +46,16 @@ function newConnection(socket) {
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
-	function clearCanvas() {
-		io.emit('clear', clear);
+	function clearCanvas(data) {
+		if(data = "clear!"){
+			clear = 1;
+		}
+		if(clear != 1){
+			socket.emit('clear', clear);
+		}
+		else{
+			io.emit('clear', clear);
+		}
 		clear = 0;
 	}
 	function saveCanvas(data) {
