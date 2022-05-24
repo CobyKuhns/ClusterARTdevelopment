@@ -41,6 +41,7 @@ function newConnection(socket) {
 		socket.emit('update', "null");
 	}
 	if(clear) {
+		console.log("Sending clear signal");
 		socket.emit('clear', 'clear');
 		clear = 0;
 	}
