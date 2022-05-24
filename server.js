@@ -47,8 +47,7 @@ function newConnection(socket) {
 		socket.broadcast.emit('mouse', data);
 	}
 	function clearCanvas() {
-		console.log(clear);
-		socket.emit('clear', clear);
+		io.emit('clear', clear);
 		clear = 0;
 	}
 	function saveCanvas(data) {
