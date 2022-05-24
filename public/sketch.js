@@ -21,6 +21,7 @@ function setup() {
 var timerID = setInterval(function() {
     let canvasState = cnv.elt.toDataURL();
 	socket.emit('update', canvasState);
+	console.log(canvasState)
 }, 10 * 1000);
 
 function loadCanvas(data) {
