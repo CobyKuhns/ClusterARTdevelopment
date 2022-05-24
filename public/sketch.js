@@ -77,6 +77,7 @@ function draw() {
 	socket.on("update", loadCanvas);
 	if(typeof img !== "undefined" && hasBg == 0) {
 		console.log("Attempting to update background...")
+		console.log(img)
 		background(img);
 		hasBg = 1;
 	}
