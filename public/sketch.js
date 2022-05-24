@@ -27,8 +27,7 @@ var timerID = setInterval(function() {
 function loadCanvas(data) {
 	if(data !== "null") {
 		img = loadImage(data);
-		console.log(typeof data);
-		image(img, 0, 0, img.width, img.height);
+		
 	}
 }
 function newDrawing(data) {
@@ -74,4 +73,5 @@ function touchMoved() {
 	ellipse(mouseX, mouseY, 10, 10);
 }
 function draw() {
+	image(img, 0, 0, img.width, img.height);
 }
