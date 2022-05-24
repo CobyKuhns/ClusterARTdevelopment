@@ -92,7 +92,7 @@ function draw() {
 		hasBg = hasBg + 1;
 	}
 	if(needsCleared) {
-		clear();
+		background(0);
 		needsCleared = 0;
 	}
 }

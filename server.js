@@ -49,6 +49,7 @@ function newConnection(socket) {
 	function clearCanvas() {
 		console.log(clear);
 		socket.emit('clear', clear);
+		clear = 0;
 	}
 	function saveCanvas(data) {
 		canvasState = data;
