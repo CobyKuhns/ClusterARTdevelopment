@@ -74,7 +74,7 @@ function touchMoved() {
 function draw() {
 	socket.on("update", loadCanvas);
 	if(typeof img !== "undefined") {
-		image(img, 0, 0, img.width, img.height);
+		background(img,);
 	}
 	
 }
