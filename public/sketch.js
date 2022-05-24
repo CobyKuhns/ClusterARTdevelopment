@@ -18,6 +18,8 @@ function setup() {
 	
 	socket = io.connect("http://52.52.137.68:3000");
 	socket.on('mouse', newDrawing);
+	socket.on("update", loadCanvas);
+	socket.on('clear', clearCanvas);
 }
 
 var timerID = setInterval(function() {
@@ -81,8 +83,6 @@ function clearCanvas() {
 }
 
 function draw() {
-	socket.on("update", loadCanvas);
-	socket.on('clear', clearCanvas);
 	if(typeof img !== "undefined" && hasBg <= 10) {
 		console.log("Attempting to update background...");
 		background(img);
