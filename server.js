@@ -50,7 +50,7 @@ function newConnection(socket) {
 		if(data = "clear!"){
 			clear = 1;
 		}
-		if(clear != 1){
+		if(clear !== 1){
 			socket.emit('clear', clear);
 		}
 		else{
