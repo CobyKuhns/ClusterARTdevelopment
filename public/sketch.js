@@ -77,6 +77,7 @@ function touchMoved() {
 }
 
 function clearCanvas() {
+	console.log("Clearing canvas...")
 	clear();
 }
 

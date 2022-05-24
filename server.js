@@ -18,7 +18,7 @@ io.sockets.on('connection', newConnection);
 const readline = require('readline').createInterface({
 	input: process.stdin,
 	output: process.stdout,
-	prompt: "SERVER"
+	prompt: "SERVER:"
   });
 
 readline.prompt();
