@@ -15,21 +15,6 @@ console.log("My socket server is running");
 const io = require('socket.io')(server, {cors: {origin: "*"}});
 
 io.sockets.on('connection', newConnection);
-const readline = require('readline').createInterface({
-	input: process.stdin,
-	output: process.stdout,
-	prompt: "SERVER:"
-  });
-
-readline.prompt();
-
-readline.on('line', (line) => {
-	if(line == "clear") {
-		console.log("Clearing canvas's");
-		clear = 1;
-	}
-	readline.prompt();
-})
 
 function newConnection(socket) {
 	if(typeof canvasState !== 'undefined') {
