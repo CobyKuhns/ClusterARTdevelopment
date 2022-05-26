@@ -5,7 +5,7 @@ const { rawListeners } = require('process');
 var app = express();
 //This part links the public folder to the server, so ideally index.html will get pulled when someone connects
 app.use(express.static('public'));
-var server = app.listen(3000);
+var server = app.listen(80);
 var canvasState;
 var clear;
 clear = 0;

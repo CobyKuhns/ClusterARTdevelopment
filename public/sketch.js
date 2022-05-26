@@ -23,7 +23,7 @@ function setup() {
 	cnv = createCanvas(800, 800);
 	background(0);
 	
-	socket = io.connect("http://52.52.137.68:3000");
+	socket = io.connect("http://52.52.137.68");
 	socket.on('mouse', newDrawing);
 	socket.on("update", loadCanvas);
 	socket.on('clear', clearCanvas);
