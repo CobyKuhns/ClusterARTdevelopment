@@ -7,10 +7,13 @@ var app = express();
 app.use(express.static('public'));
 var server = app.listen(3000);
 var canvasState;
-var clear;
-clear = 0;
+var totalVotes;
+totalVotes = 0;
+var votesFor;
+votesFor = 0;
 var MOTG;
 MOTG = "Hello, and welcome to ClusterART! This is a community chalkboard I made to work on my socket programming skills. Have fun, and keep it PG :)"
+
 console.log("My socket server is running");
 
 const io = require('socket.io')(server, {cors: {origin: "*"}});
@@ -33,22 +36,30 @@ function newConnection(socket) {
 	socket.on('clear', clearCanvas);
 	socket.on('mouse', mouseMsg);
 	socket.on('update', saveCanvas);
+	socket.on('vote', countVote)
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
 	function clearCanvas(data) {
 		if(data) {
-			clear = 1;
+			io.emit("vote", "clear");
 		}
-		if(clear !== 1) {
-			socket.emit('clear', clear);
+		while(totalVotes <= io.engine.clientsCount) {
+			if(votesFor >= (io.engine.clientsCount / 2)) {
+				io.emit("clear", 1);
+				totalVotes = 0;
+				votesFor = 0;
+				break;			
+			}
 		}
-		else {
-			io.emit('clear', clear);
-		}
-		clear = 0;
 	}
+	
 	function saveCanvas(data) {
 		canvasState = data;
+	}
+	function countVote(data) {
+		if(data) {
+			votesFor += 1;
+		}
 	}
 }
