@@ -10,7 +10,7 @@ var htmlColor;
 var penSize;
 
 function setup() {
-	cnv = createCanvas(1585, 750);
+	cnv = createCanvas(1600, 750);
 	cnv.parent("cnvDiv");
 	background(0);
 	
