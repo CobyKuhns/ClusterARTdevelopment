@@ -36,7 +36,8 @@ function newConnection(socket) {
 	socket.on('clear', clearCanvas);
 	socket.on('mouse', mouseMsg);
 	socket.on('update', saveCanvas);
-	socket.on('vote', countVote)
+	socket.on('vote', countVote);
+	
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
