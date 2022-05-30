@@ -32,10 +32,6 @@ var timerID = setInterval(function() {
 	socket.emit('update', canvasState);
 }, 3 * 1000);
 
-var timerID2 = setInterval(function() {
-    socket.emit('clear', 0)
-}, 3 * 1000);
-
 function loadCanvas(data) {
 	if(data !== "null") {
 		img = loadImage(data);

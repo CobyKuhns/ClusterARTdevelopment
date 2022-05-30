@@ -23,7 +23,7 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket) {
 	var i = 0;
 	if(i == 0) {
-		socket.emit("MOTG", MOTG)
+		socket.emit("MOTG", MOTG);
 		i = i + 1;
 	}
 	
@@ -40,10 +40,8 @@ function newConnection(socket) {
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
-	function clearCanvas(data) {
-		if(data) {
+	function clearCanvas() {
 			io.emit("vote", "clear");
-		}
 		while(totalVotes <= io.engine.clientsCount) {
 			if(votesFor >= (io.engine.clientsCount / 2)) {
 				io.emit("clear", 1);
