@@ -9,7 +9,8 @@ var server = app.listen(3000);
 var canvasState;
 var clear;
 clear = 0;
-
+var MOTG;
+MOTG = "Hello, and welcome to ClusterART! This is a community chalkboard I made to work on my socket programming skills. Have fun, and keep it PG :)"
 console.log("My socket server is running");
 
 const io = require('socket.io')(server, {cors: {origin: "*"}});
@@ -17,6 +18,7 @@ const io = require('socket.io')(server, {cors: {origin: "*"}});
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
+	socket.emit("MOTG", MOTG)
 	if(typeof canvasState !== 'undefined') {
 		socket.emit('update', canvasState);
 	}

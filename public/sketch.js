@@ -9,12 +9,6 @@ needsCleared = 0;
 var htmlColor;
 var penSize;
 
-
-
-	
-
-
-
 function setup() {
 	cnv = createCanvas(1580, 750);
 	cnv.parent("cnvDiv");
@@ -24,6 +18,7 @@ function setup() {
 	socket.on('mouse', newDrawing);
 	socket.on("update", loadCanvas);
 	socket.on('clear', clearCanvas);
+	socket.on('MOTG', displayMOTG)
 	const element = document.getElementById('clear');
 	element.addEventListener("click", () => {
 		socket.emit('clear', 1);
@@ -125,4 +120,8 @@ function draw() {
 		alert("Server has cleared the Canvas!");
 		needsCleared = 0;
 	}
+}
+
+function displayMOTG(data) {
+	alert(data);
 }
