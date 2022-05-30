@@ -124,4 +124,5 @@ function draw() {
 
 function displayMOTG(data) {
 	alert(data);
+	socket.off("MOTG")
 }
