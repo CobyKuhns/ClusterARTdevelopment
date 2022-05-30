@@ -42,6 +42,7 @@ function newConnection(socket) {
 	}
 	function clearCanvas() {
 			io.emit("vote", "clear");
+			console.log("Connections" + io.engine.clientsCount);
 		while(totalVotes <= io.engine.clientsCount) {
 			if(votesFor >= (io.engine.clientsCount / 2)) {
 				io.emit("clear", 1);
@@ -57,7 +58,8 @@ function newConnection(socket) {
 	}
 	function countVote(data) {
 		if(data) {
-			votesFor += 1;
+			votesFor = votesFor + 1;
+			console.log(votesFor);
 		}
 	}
 }
