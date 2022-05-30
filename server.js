@@ -18,7 +18,12 @@ const io = require('socket.io')(server, {cors: {origin: "*"}});
 io.sockets.on('connection', newConnection);
 
 function newConnection(socket) {
-	socket.emit("MOTG", MOTG)
+	var i = 0;
+	if(i == 0) {
+		socket.emit("MOTG", MOTG)
+		i = i + 1;
+	}
+	
 	if(typeof canvasState !== 'undefined') {
 		socket.emit('update', canvasState);
 	}
