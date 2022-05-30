@@ -17,6 +17,7 @@ var penSize;
 
 function setup() {
 	cnv = createCanvas(1600, 750);
+	cnv.parent("cnvDiv");
 	background(0);
 	
 	socket = io.connect("http://52.52.137.68");
