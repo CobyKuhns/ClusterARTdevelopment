@@ -7,11 +7,7 @@ var needsCleared;
 needsCleared = 0;
 
 var htmlColor;
-var penColor = {
-	r: 255,
-	g: 255,
-	b: 255,
-}
+var penSize;
 
 
 
@@ -53,11 +49,12 @@ function newDrawing(data) {
 	console.log(data);
 	noStroke();
 	fill(data.red, data.green, data.blue);
-	ellipse(data.x, data.y, 10, 10);
+	ellipse(data.x, data.y, data.size, data.size);
 }
 
 function mouseDragged() {
 	htmlColor = document.getElementById('colorpicker').value;
+	penSize = document.getElementById('size').value;
 	console.log(htmlColor);
 	console.log(mouseX + ',' + mouseY);
 	var data = {
@@ -66,15 +63,17 @@ function mouseDragged() {
 		red: parseInt(htmlColor[1]+htmlColor[2],16),
 		green: parseInt(htmlColor[3]+htmlColor[4],16),
 		blue: parseInt(htmlColor[5]+htmlColor[6],16),
+		size: penSize
 	}
 	socket.emit('mouse', data);
 	noStroke();
 	fill(data.red, data.green, data.blue);
-	ellipse(mouseX, mouseY, 10, 10);
+	ellipse(mouseX, mouseY, penSize, penSize);
 }
 
 function mouseClicked() {
 	htmlColor = document.getElementById('colorpicker').value;
+	penSize = document.getElementById('size').value;
 	console.log(htmlColor);
 	console.log(mouseX + ',' + mouseY);
 	var data = {
@@ -83,15 +82,17 @@ function mouseClicked() {
 		red: parseInt(htmlColor[1]+htmlColor[2],16),
 		green: parseInt(htmlColor[3]+htmlColor[4],16),
 		blue: parseInt(htmlColor[5]+htmlColor[6],16),
+		size: penSize
 	}
 	socket.emit('mouse', data);
 	noStroke();
 	fill(data.red, data.green, data.blue);
-	ellipse(mouseX, mouseY, 10, 10);
+	ellipse(mouseX, mouseY, penSize, penSize);
 }
 
 function touchMoved() {
 	htmlColor = document.getElementById('colorpicker').value;
+	penSize = document.getElementById('size').value;
 	console.log(htmlColor);
 	console.log(mouseX, mouseY)
 	var data = {
@@ -100,11 +101,12 @@ function touchMoved() {
 		red: parseInt(htmlColor[1]+htmlColor[2],16),
 		green: parseInt(htmlColor[3]+htmlColor[4],16),
 		blue: parseInt(htmlColor[5]+htmlColor[6],16),
+		size: penSize
 	}
 	socket.emit('mouse', data);
 	noStroke();
 	fill(data.red, data.green, data.blue);
-	ellipse(mouseX, mouseY, 10, 10);
+	ellipse(mouseX, mouseY, penSize, penSize);
 }
 
 function clearCanvas(data) {
