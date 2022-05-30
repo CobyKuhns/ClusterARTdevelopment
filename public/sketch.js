@@ -18,7 +18,8 @@ function setup() {
 	socket.on('mouse', newDrawing);
 	socket.on("update", loadCanvas);
 	socket.on('clear', clearCanvas);
-	socket.on('MOTG', displayMOTG)
+	socket.on('MOTG', displayMOTG);
+	socket.on('vote', getVote);
 	const element = document.getElementById('clear');
 	element.addEventListener("click", () => {
 		socket.emit('clear', 1);
@@ -122,7 +123,18 @@ function draw() {
 	}
 }
 
+function getVote() {
+	var vote = confirm("CLEAR VOTE!: Do you want to clear the canvas?");
+	if(vote) {
+		alert("Thanks for voting yes! Your vote has been counted.");
+		socket.emit("vote", 1);
+	}
+	else {
+		alert("Thanks for voting no! Your vote has been counted");
+	}
+}
+
 function displayMOTG(data) {
 	alert(data);
-	socket.off("MOTG")
+	socket.off("MOTG");
 }
