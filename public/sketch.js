@@ -127,6 +127,7 @@ function getVote() {
 	}
 	else {
 		alert("Thanks for voting no! Your vote has been counted");
+		socket.emit('vote', 0);
 	}
 }
 

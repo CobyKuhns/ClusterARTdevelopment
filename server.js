@@ -11,7 +11,9 @@ var totalVotes;
 totalVotes = 0;
 var votesFor;
 votesFor = 0;
+var votesAgainst = 0;
 var MOTG;
+
 MOTG = "Hello, and welcome to ClusterART! This is a community chalkboard I made to work on my socket programming skills. Have fun, and keep it PG :)"
 
 console.log("My socket server is running");
@@ -21,10 +23,16 @@ const io = require('socket.io')(server, {cors: {origin: "*"}});
 io.sockets.on('connection', newConnection);
 
 var timerID = setInterval(function() {
-    if(votesFor >= (io.engine.clientsCount / 2)) {
+    if(votesFor > (io.engine.clientsCount / 2)) {
 		io.emit("clear", 1);
 		totalVotes = 0;
 		votesFor = 0;
+		votesAgainst = 0;
+	}
+	else if(votesAgainst > (io.engine.clientsCount / 2)) {
+		totalVotes = 0;
+		votesFor = 0;
+		votesAgainst = 0;
 	}
 }, 3 * 1000);
 
@@ -49,7 +57,7 @@ function newConnection(socket) {
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
-	
+
 	function clearCanvas() {
 		votesFor = votesFor + 1;
 		socket.broadcast.emit("vote", "clear");
@@ -62,6 +70,9 @@ function newConnection(socket) {
 		if(data) {
 			votesFor = votesFor + 1;
 			console.log(votesFor);
+		}
+		else {
+			votesAgainst = votesAgainst + 1;
 		}
 	}
 }
