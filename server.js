@@ -29,7 +29,7 @@ var timerID = setInterval(function() {
 		votesFor = 0;
 		votesAgainst = 0;
 	}
-	else if(votesAgainst > (io.engine.clientsCount / 2)) {
+	else if(votesAgainst >= (io.engine.clientsCount / 2)) {
 		totalVotes = 0;
 		votesFor = 0;
 		votesAgainst = 0;
