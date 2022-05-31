@@ -20,6 +20,14 @@ const io = require('socket.io')(server, {cors: {origin: "*"}});
 
 io.sockets.on('connection', newConnection);
 
+var timerID = setInterval(function() {
+    if(votesFor >= (io.engine.clientsCount / 2)) {
+		io.emit("clear", 1);
+		totalVotes = 0;
+		votesFor = 0;
+	}
+}, 3 * 1000);
+
 function newConnection(socket) {
 	var i = 0;
 	if(i == 0) {
@@ -41,17 +49,10 @@ function newConnection(socket) {
 	function mouseMsg(data) {
 		socket.broadcast.emit('mouse', data);
 	}
+	
 	function clearCanvas() {
-			io.emit("vote", "clear");
-			console.log("Connections" + io.engine.clientsCount);
-		while(totalVotes <= io.engine.clientsCount) {
-			if(votesFor >= (io.engine.clientsCount / 2)) {
-				io.emit("clear", 1);
-				totalVotes = 0;
-				votesFor = 0;
-				break;			
-			}
-		}
+		votesFor = votesFor + 1;
+		socket.broadcast.emit("vote", "clear");
 	}
 	
 	function saveCanvas(data) {
