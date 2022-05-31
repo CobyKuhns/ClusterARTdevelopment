@@ -20,6 +20,7 @@ function setup() {
 	socket.on('clear', clearCanvas);
 	socket.on('MOTG', displayMOTG);
 	socket.on('vote', getVote);
+	socket.on('result', showResult);
 	const element = document.getElementById('clear');
 	element.addEventListener("click", () => {
 		socket.emit('clear', 1);
@@ -134,4 +135,13 @@ function getVote() {
 function displayMOTG(data) {
 	alert(data);
 	socket.off("MOTG");
+}
+
+function showResult(data) {
+	if(data) {
+		alert("Vote was successful! Server will be cleared...")
+	}
+	else {
+		alert("Vote Failed: Server will not be cleared.")
+	}
 }

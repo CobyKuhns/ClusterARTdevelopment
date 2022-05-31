@@ -24,17 +24,19 @@ io.sockets.on('connection', newConnection);
 
 var timerID = setInterval(function() {
     if(votesFor > (io.engine.clientsCount / 2)) {
+		io.emit('result', 1);
 		io.emit("clear", 1);
 		totalVotes = 0;
 		votesFor = 0;
 		votesAgainst = 0;
 	}
 	else if(votesAgainst >= (io.engine.clientsCount / 2)) {
+		io.emit("result", 0);
 		totalVotes = 0;
 		votesFor = 0;
 		votesAgainst = 0;
 	}
-}, 3 * 1000);
+}, 2 * 1000);
 
 function newConnection(socket) {
 	var i = 0;
